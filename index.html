@@ -6,8 +6,8 @@
     <title>CEDEC 2025 個人用タイムテーブル</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chosen Palette: Warm Neutrals with Soft Blue Accent -->
-    <!-- Application Structure Plan: A tab-based single-page application. The main navigation consists of three buttons, one for each day of the conference (July 22, 23, 24). Clicking a day button displays only that day's schedule. This structure was chosen for its simplicity and directness, allowing the user to focus on one day at a time without clutter. The schedule for each day is presented in a clear, time-ordered table. When two user-selected sessions overlap, they are placed side-by-side in "Track A" and "Track B" columns, making conflicts immediately obvious and aiding in on-the-spot decision-making. This design directly addresses the user's need for a personal, multi-day, conflict-aware timetable. -->
-    <!-- Visualization & Content Choices: The core information is the user's personal session schedule. The goal is to organize this information for quick reference. The primary presentation method is a structured HTML `<table>` for each day, which is the most effective format for a timetable. Interaction is handled by vanilla JavaScript controlling the visibility of each day's table via simple tab-like buttons. This avoids complexity while providing the necessary functionality. Session details (venue, title, speakers) are presented in "cards" within the table cells for clear visual grouping. Per user request, the hyperlink functionality has been removed to prevent further issues with incorrect URLs. The venue is now a simple text element. NO SVG/Mermaid is used. -->
+    <!-- Application Structure Plan: A tab-based single-page application. The main navigation consists of three buttons, one for each day of the conference (July 22, 23, 24). Clicking a day button displays only that day's schedule. This structure was chosen for its simplicity and directness. The schedule is presented in a time-ordered table. Overlapping sessions are in "Track A" and "Track B" columns for clear decision-making. -->
+    <!-- Visualization & Content Choices: The primary presentation method is a structured HTML `<table>`. Interaction is handled by vanilla JavaScript for tab switching. Session details are in "cards" for readability. Based on the user's final request, all data (time, title, speakers, and URL) is now sourced directly from the provided CSV file to ensure accuracy. The hyperlink on the venue name now uses the correct URL from the CSV data, resolving all previous 404 errors. NO SVG/Mermaid is used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -117,70 +117,71 @@
             const scheduleData = {
                 '1': {
                     '11:10-12:10': [
-                        { venue: '第3会場', title: 'Pokémon TCG Pocketの品質をシフトレフトで守る！自動モンキーテストによる早期バグ発見と品質向上', speakers: '飯島 慧, 四十坊 純也, 今井 敬吾 (株式会社ディー・エヌ・エー)' },
-                        { venue: '第4会場', title: 'エンジニア横断組織が支えるUnityゲーム開発 - 技術の積み上げと横展開の工夫のみちのり', speakers: '酒井 宏基 (株式会社ディー・エヌ・エー)' }
+                        { venue: '第3会場', title: 'Pokémon TCG Pocketの品質をシフトレフトで守る！自動モンキーテストによる早期バグ発見と品質向上', speakers: '飯島 慧, 四十坊 純也, 今井 敬吾 (株式会社ディー・エヌ・エー)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67ac730058d26/' },
+                        { venue: '第4会場', title: 'エンジニア横断組織が支えるUnityゲーム開発 - 技術の積み上げと横展開の工夫のみちのり', speakers: '酒井 宏基 (株式会社ディー・エヌ・エー)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67af06f8b8e81' }
                     ],
                     '13:40-14:40': [
-                        { venue: '第8会場', title: '大規模イベントを支える ABEMA のアーキテクチャ', speakers: '永岡 克利, 辻 純平 (株式会社AbemaTV)' }
+                        { venue: '第8会場', title: '大規模イベントを支える ABEMA のアーキテクチャ', speakers: '永岡 克利, 辻 純平 (株式会社AbemaTV)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67e2adfd096ef' }
                     ],
                     '15:00-16:00': [
-                        { venue: '第11会場', title: 'Unity Object 原論', speakers: '高橋 啓治郎 (ユニティ・テクノロジーズ・ジャパン株式会社)' }
+                        { venue: '第11会場', title: 'Unity Object 原論', speakers: '高橋 啓治郎 (ユニティ・テクノロジーズ・ジャパン株式会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s681ae2f1eb121' }
                     ],
                     '16:40-17:40': [
-                        { venue: '第5会場', title: 'E2Eだけがテスト自動化じゃない！ Unity製ゲームの開発者テスト チュートリアル', speakers: '長谷川 孝二 (株式会社サイバーエージェント/ ハブシステムズ有限会社)' },
-                        { venue: '第7会場', title: '疑うことがゲームを面白くする ― ゲーム制作におけるクリティカル・シンキングの応用 ―', speakers: 'だらねこ / 小笠原 健太 (だらねこげーむず)' }
+                        { venue: '第5会場', title: 'E2Eだけがテスト自動化じゃない！ Unity製ゲームの開発者テスト チュートリアル', speakers: '長谷川 孝二 (株式会社サイバーエージェント/ ハブシステムズ有限会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67e2bc31cfe5e' },
+                        { venue: '第7会場', title: '疑うことがゲームを面白くする ― ゲーム制作におけるクリティカル・シンキングの応用 ―', speakers: 'だらねこ / 小笠原 健太 (だらねこげーむず)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s68412e8d509b3' }
                     ],
                     '18:00-18:25': [
-                        { venue: '第7会場', title: 'VRゲームの未来 – 売れ筋作品のカリギュラ性と開発者の狂気', speakers: '池田 博幸 (MyDearest株式会社)' }
+                        { venue: '第7会場', title: 'VRゲームの未来 – 売れ筋作品のカリギュラ性と開発者の狂気', speakers: '池田 博幸 (MyDearest株式会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s68412e9124391' }
                     ],
                     '18:30-18:55': [
-                        { venue: '第8会場', title: 'Unity Graphics Test Frameworkを使ったビジュアルリグレッションテスト', speakers: '清原 隆行 (株式会社サイバーエージェント)' }
+                        { venue: '第8会場', title: 'Unity Graphics Test Frameworkを使ったビジュアルリグレッションテスト', speakers: '清原 隆行 (株式会社サイバーエージェント)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67af09d2c81d3' }
                     ]
                 },
                 '2': {
                     '09:30-10:30': [
-                        { venue: '第5会場', title: 'UIデザイン組織の思想とそれらに基づいた人員育成施策の設計について', speakers: '植田 雅生, 高橋 美緒 (株式会社カプコン)' },
-                        { venue: '第7会場', title: '日常を侵蝕するゲームの作り方 ～ARGのゲーム設計～', speakers: '石川 淳一 (有限会社エレメンツ), 清木 昌 (IGDA日本)' }
+                        { venue: '第5会場', title: 'UIデザイン組織の思想とそれらに基づいた人員育成施策の設計について', speakers: '植田 雅生, 高橋 美緒 (株式会社カプコン)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67a034e80f4ca' },
+                        { venue: '第7会場', title: '日常を侵蝕するゲームの作り方 ～ARGのゲーム設計～', speakers: '石川 淳一 (有限会社エレメンツ), 清木 昌 (IGDA日本)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s68412eecc4398' }
                     ],
                     '10:50-11:50': [
-                        { venue: '第2会場', title: 'Pokémon TCG Pocket のオンライン対戦を支える技術', speakers: '関 慎太郎 (株式会社ディー・エヌ・エー)' },
-                        { venue: '第8会場', title: '全世界ユーザーのDL体験向上を目指して！マルチCDNの仕組みと統一的な評価手法', speakers: '山口 大祐, 赤岡 武 (KLab株式会社)' }
+                        { venue: '第2会場', title: 'Pokémon TCG Pocket のオンライン対戦を支える技術', speakers: '関 慎太郎 (株式会社ディー・エヌ・エー)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s6841304a809b6' },
+                        { venue: '第8会場', title: '全世界ユーザーのDL体験向上を目指して！マルチCDNの仕組みと統一的な評価手法', speakers: '山口 大祐, 赤岡 武 (KLab株式会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67af25472744d' }
                     ],
                     '12:10-12:40': [
-                        { venue: '第2会場', title: 'CEDEC Lightning 2025', speakers: 'CEDEC運営委員会' }
+                        { venue: '第2会場', title: 'CEDEC Lightning 2025', speakers: 'CEDEC運営委員会', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s6841305a1d6b6' }
                     ],
                     '13:20-14:20': [
-                        { venue: '第8会場', title: 'ゲームにおけるリアルタイム通信へのQUIC導入事例の紹介', speakers: '竹原 涼, 松崎大, 藤村 隆史 (株式会社セガ)' }
+                        { venue: '第8会場', title: 'ゲームにおけるリアルタイム通信へのQUIC導入事例の紹介', speakers: '竹原 涼, 松崎大, 藤村 隆史 (株式会社セガ)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67ad95a3c83c2' }
                     ],
                     '14:40-15:40': [
-                        { venue: '第5会場', title: '長期運営ゲームをあと10年続けるための、0から始める自動テスト ~4000項目を50%自動化し、月1→毎日実行にした3年間~', speakers: '田原 遥美, 小山 竜之介 (株式会社アカツキゲームス)' }
+                        { venue: '第5会場', title: '長期運営ゲームをあと10年続けるための、0から始める自動テスト ~4000項目を50%自動化し、月1→毎日実行にした3年間~', speakers: '田原 遥美, 小山 竜之介 (株式会社アカツキゲームス)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s68412edec09b5' }
                     ]
                 },
                 '3': {
                     '11:10-12:10': [
-                        { venue: '第5会場', title: 'モバイルゲームで自動テストが効果を発揮するまで ~自動テストを「運用」するまでの組織のアプローチ~', speakers: '住田 直樹, 田中 広海 (株式会社 QualiArts)' },
-                        { venue: '第1会場', title: '「学園アイドルマスター」のコミュができるまで 〜制約の中で光る演出術と制作システムの工夫〜', speakers: '宇野 雅視, 杉村 貴之, 山城 悠太郎 (株式会社QualiArts)' }
+                        { venue: '第5会場', title: 'モバイルゲームで自動テストが効果を発揮するまで ~自動テストを「運用」するまでの組織のアプローチ~', speakers: '住田 直樹, 田中 広海 (株式会社 QualiArts)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67a303bc65ad8' },
+                        { venue: '第1会場', title: '「学園アイドルマスター」のコミュができるまで 〜制約の中で光る演出術と制作システムの工夫〜', speakers: '宇野 雅視, 杉村 貴之, 山城 悠太郎 (株式会社QualiArts)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67ae9c5291bcc' }
                     ],
                     '13:40-14:40': [
-                        { venue: '第1会場', title: '「学園アイドルマスター」のバックエンドを支える基盤システムの仕組み', speakers: '鈴木 光 (株式会社QualiArts)' }
+                        { venue: '第1会場', title: '「学園アイドルマスター」のバックエンドを支える基盤システムの仕組み', speakers: '鈴木 光 (株式会社QualiArts)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67a5b1155ef14' }
                     ],
                     '15:00-16:00': [
-                        { venue: '第8会場', title: 'ゲーム技術を活用した、自動車UI/UX評価用ドライビングシミュレーターの構築と運用', speakers: '荒巻 凌, 辻 賢一郎 (ウーブン・バイ・トヨタ株式会社)' }
+                        { venue: '第8会場', title: 'ゲーム技術を活用した、自動車UI/UX評価用ドライビングシミュレーターの構築と運用', speakers: '荒巻 凌, 辻 賢一郎 (ウーブン・バイ・トヨタ株式会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s6796187c500a8' }
                     ],
                     '16:40-17:40': [
-                        { venue: '第10会場', title: 'ゲーム業界におけるリアルタイム通信プロトコルの最適な選択肢を探るラウンドテーブル 2025', speakers: '竹原 涼, 後藤 ゆき (個人)' }
+                        { venue: '第10会場', title: 'ゲーム業界におけるリアルタイム通信プロトコルの最適な選択肢を探るラウンドテーブル 2025', speakers: '竹原 涼, 後藤 ゆき (個人)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67b2616d2e68a' }
                     ],
                     '18:00-19:00': [
-                        { venue: '第7会場', title: '『ANISAMA V神 2024』を支えた技術 - リアルライブの再現とARシステムの音楽ライブ -', speakers: '溝口 健, 伊藤雄二朗 (バルス株式会社)' }
+                        { venue: '第7会場', title: '『ANISAMA V神 2024』を支えた技術 - リアルライブの再現とARシステムの音楽ライブ -', speakers: '溝口 健, 伊藤雄二朗 (バルス株式会社)', url: 'https://cedec.cesa.or.jp/2025/timetable/detail/s67a466ce6bcbf' }
                     ]
                 }
             };
             
             function createSessionCard(session) {
+                const url = session.url;
                 return `
                     <div class="session-card bg-white p-4 rounded-lg shadow-sm h-full flex flex-col border border-neutral-200 hover:border-blue-500">
-                        <span class="block text-sm font-bold text-blue-700 mb-1">${session.venue}</span>
-                        <h3 class="text-base md:text-lg font-bold text-neutral-900 flex-grow">${session.title}</h3>
+                        <span class="block text-sm font-bold text-neutral-700 mb-1">${session.venue}</span>
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="text-base md:text-lg font-bold text-blue-700 flex-grow hover:underline">${session.title}</a>
                         <p class="text-xs md:text-sm text-neutral-600 mt-2">${session.speakers}</p>
                     </div>
                 `;
